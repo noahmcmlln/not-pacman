@@ -105,7 +105,7 @@ KeyedUpBall.prototype = {
   detectCollision: function(otherBall) {
     var collisionDistance = this.radius + otherBall.radius;
     var otherwiseDistance = dist(this.position.x, this.position.y, otherBall.position.x, otherBall.position.y);
-    (otherwiseDistance < collisionDistance) ? true : false;
+    return (otherwiseDistance < collisionDistance) ? true : false;
     // your code goes here
 
   },
