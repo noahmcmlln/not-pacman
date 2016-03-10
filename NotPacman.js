@@ -22,23 +22,18 @@ var ballFilter = function () {
   ballPit = ballPit.filter(collisionDetected);
 };
 
-var collisionDetected = function (ball) {
-  return (!ball.detectCollision);
+var collisionDetected = function (KeyedUpBall) {
+  return (!KeyedUpBall.detectCollision);
 };
 
-var makeitCount = function () {
-    number: 0,
-    displayyyyy: function ()
-}
 var NotPacmanGame = function () {
-
+  this.initialize();
 };
 
 NotPacmanGame.prototype = {
 
   initialize: function () {
     createCanvas(800, 800);
-    background(0);
     while (ballPit.length < ballAmount) ballPit.push(new BouncyBall(width/2, height/2));
     ballPit.forEach(ballStart);
     KeyedUpBall.initialize();
@@ -53,7 +48,7 @@ NotPacmanGame.prototype = {
   },
 
   display: function () {
-
-  }
+    background(50);
+  },
 
 };
