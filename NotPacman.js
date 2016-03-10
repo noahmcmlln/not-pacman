@@ -18,6 +18,18 @@ var updateanddisplay = function(ball){
   ball.display();
 };
 
+var ballFilter = function () {
+  ballPit = ballPit.filter(collisionDetected);
+};
+
+var collisionDetected = function (ball) {
+  return (!ball.detectCollision);
+};
+
+var makeitCount = function () {
+    number: 0,
+    displayyyyy: function ()
+}
 var NotPacmanGame = function () {
 
 };
@@ -26,14 +38,17 @@ NotPacmanGame.prototype = {
 
   initialize: function () {
     createCanvas(800, 800);
+    background(0);
     while (ballPit.length < ballAmount) ballPit.push(new BouncyBall(width/2, height/2));
     ballPit.forEach(ballStart);
-
+    KeyedUpBall.initialize();
   },
 
   update: function () {
-    for (var index = 0; index < ballPit.length, ++index) {
-      if
+    ballPit.forEach(ballFilter);
+    ballPit.forEach(updateanddisplay);
+    KeyedUpBall.updateanddisplay();
+
     }
   },
 
