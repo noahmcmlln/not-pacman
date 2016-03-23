@@ -30,6 +30,7 @@ var score = {
 };
 
 var NotPacmanGame = function () {
+
 };
 
   NotPacmanGame.prototype = {
@@ -43,21 +44,21 @@ var NotPacmanGame = function () {
 
     update: function () {
       this.keyedUpBall.update();
-      ballPit.forEach(checkForSplice);
-      if (ballPit.length = 0) timer.pause();
+      ballPit.forEach(this.checkForSplice, this);
+      if (ballPit.length === 0) this.endGame(),
     },
 
     display: function () {
       this.gameSetUp();
-      if (this.gameIsThere) this.gameGo();
+      if (this.gameIsThere) this.gameRun();
     },
 
-    var updateanddisplay = function(otherBall, index, array){
+    updateanddisplay: function (otherBall, index, array) {
       otherBall.update();
       otherBall.display();
     },
 
-    gameSetUp: function() {
+    gameSetUp: function () {
       background(0);
       fill(230);
       textSize(40);
@@ -65,28 +66,39 @@ var NotPacmanGame = function () {
       this.score.display();
     },
 
-    gameGo: function() {
+    gameRun: function () {
       if (ballPit.length > 0) this.keyedUpBall.display();
       ballPit.forEach(this.updateanddisplay);
     },
 
-    beginGame: function(x, y) {
-      timer.unpause();
+    beginGame: function (x, y) {
       this.gameIsThere = 1;
+      timer.unpause();
       this.keyedUpBall = new KeyedUpBall(x, y);
       this.keyedUpBall.initialize;
     },
 
-    var ballStart = function(otherBall, index, array){
+    ballStart: function (otherBall, index, array){
       otherBall.initialize();
     },
 
-    checkForSplice: function(otherBall, ballAmount, array) {
-      if (this.keyedUpBall.detectCollision(otherBall)) this.spliceBalls(ballAmount)
+    checkForSplice: function (otherBall, ballAmount, array) {
+      if (this.keyedUpBall.detectCollision(otherBall)) this.spliceBalls(ballAmount);
     },
 
     spliceBalls : function (ballAmount) {
       ballPit.splice(ballAmount, 1);
       this.score.scorePlus;
     },
+
+    endGame : function () {
+      this.gameIsThere = 0;
+      timer.pause();
+      fill(230);
+      textSize(50);
+      textAlign(CENTER, CENTER);
+      text("Hooray!");
+    },
+
+
   };
