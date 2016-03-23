@@ -14,7 +14,7 @@ var score = function () {
     textSize(40);
     text(this.number, 560, 20);
   },
-  scorePlus: function () {
+  scorePlus = function () {
     score.number = score.number + 1;
   },
 };
@@ -33,55 +33,58 @@ var updateanddisplay = function(ball, index, array){
 };
 
 
-var NotPacmanGame = function () {};
-
-NotPacmanGame.prototype = {
-
-  initialize: function () {
-    createCanvas(600, 600);
-    while (ballPit.length < ballAmount) ballPit.push(new BouncyBall(width/2, height/2));
-    ballPit.forEach(ballStart);
-    this.keyedUpBall = new KeyedUpBall;
-    keyedUpBall.initialize();
-    this.gameIsThere = 0;
-  },
-
-  update: function () {
-    this.keyedUpBall.update();
-    ballPit.forEach(checkForSplice);
-    if (ballPit.length = 0) timer.pause();
-  },
-
-  display: function () {
-    this.gameSetUp();
-    if (this.gameIsThere) this.gameGo();
-
-  },
-  checkForSplice: function(ball, ballAmount, array) {
-    if (this.keyedUpBall.detectCollision(ball)) this.spliceBalls(ballAmount)
-  }
-  spliceBalls : function (ballAmount) {
-    ballPit.splice(ballAmount, 1);
-    this.score.scorePlus;
-  };
-
-  gameSetUp: function() {
-    background(0);
-    fill(230);
-    textSize(40);
-    text(timer.getPrettyElapsedTime(), 20, 20);
-    this.score.display();
-  },
-
-  gameGo: function() {
-    if (ballPit.length > 0) this.keyedUpBall.display();
-    ballPit.forEach(this.updateanddisplay);
-  },
-
-  beginGame: function() {
-    this.gameIsThere = 1;
-    timer.unpause();
-    this.keyedUpBall = new KeyedUpBall(mouseX, mouseY);
-    this.keyedUpBall.initialize;
-  },
+var NotPacmanGame = function () {
 };
+
+  NotPacmanGame.prototype = {
+
+    initialize: function () {
+      createCanvas(600, 600);
+      while (ballPit.length < ballAmount) ballPit.push(new BouncyBall(width/2, height/2));
+      ballPit.forEach(ballStart);
+      this.keyedUpBall = new KeyedUpBall;
+      keyedUpBall.initialize();
+      this.gameIsThere = 0;
+    },
+
+    update: function () {
+      this.keyedUpBall.update();
+      ballPit.forEach(checkForSplice);
+      if (ballPit.length = 0) timer.pause();
+    },
+
+    display: function () {
+      this.gameSetUp();
+      if (this.gameIsThere) this.gameGo();
+
+    },
+
+    checkForSplice: function(ball, ballAmount, array) {
+      if (this.keyedUpBall.detectCollision(ball)) this.spliceBalls(ballAmount)
+    },
+
+    spliceBalls : function (ballAmount) {
+      ballPit.splice(ballAmount, 1);
+      this.score.scorePlus;
+    },
+
+    gameSetUp: function() {
+      background(0);
+      fill(230);
+      textSize(40);
+      text(timer.getPrettyElapsedTime(), 20, 20);
+      this.score.display();
+    },
+
+    gameGo: function() {
+      if (ballPit.length > 0) this.keyedUpBall.display();
+      ballPit.forEach(this.updateanddisplay);
+    },
+
+    beginGame: function() {
+      this.gameIsThere = 1;
+      timer.unpause();
+      this.keyedUpBall = new KeyedUpBall(mouseX, mouseY);
+      this.keyedUpBall.initialize;
+    },
+  };
