@@ -18,7 +18,7 @@ var score = {
   display: function () {
     textSize(40);
     fill(255);
-    text(this.number, 20, 20);
+    text(this.number, 560, 40);
   },
 
   update: function () {
@@ -38,14 +38,14 @@ var NotPacmanGame = function () {
     initialize: function () {
       createCanvas(600, 600);
       while (ballPit.length < ballAmount) ballPit.push(new BouncyBall(width/2, height/2));
-      ballPit.forEach(ballStart);
-      this.gameIsThere = 0;
+      ballPit.forEach(this.ballStart);
+      this.gameIsThere = false;
     },
 
     update: function () {
-      this.keyedUpBall.update();
-      ballPit.forEach(this.checkForSplice, this);
-      if (ballPit.length === 0) this.endGame(),
+      //if (this.keyedUpBall) this.keyedUpBall.update();
+
+      if (ballPit.length === 0) this.endGame();
     },
 
     display: function () {
@@ -62,23 +62,27 @@ var NotPacmanGame = function () {
       background(0);
       fill(230);
       textSize(40);
-      text(timer.getPrettyElapsedTime(), 20, 20);
-      this.score.display();
+      text(timer.getPrettyElapsedTime(), 40, 40);
+      score.display();
     },
 
     gameRun: function () {
-      if (ballPit.length > 0) this.keyedUpBall.display();
+      if (ballPit.length > 0) {
+        this.keyedUpBall.update();
+        this.keyedUpBall.display();
+      }
       ballPit.forEach(this.updateanddisplay);
+      ballPit.forEach(this.checkForSplice, this);
     },
 
     beginGame: function (x, y) {
-      this.gameIsThere = 1;
+      this.gameIsThere = true;
       timer.unpause();
       this.keyedUpBall = new KeyedUpBall(x, y);
-      this.keyedUpBall.initialize;
+      this.keyedUpBall.initialize();
     },
 
-    ballStart: function (otherBall, index, array){
+    ballStart: function (otherBall, index, array) {
       otherBall.initialize();
     },
 
@@ -88,7 +92,7 @@ var NotPacmanGame = function () {
 
     spliceBalls : function (ballAmount) {
       ballPit.splice(ballAmount, 1);
-      this.score.scorePlus;
+      score.scorePlus();
     },
 
     endGame : function () {
@@ -96,8 +100,8 @@ var NotPacmanGame = function () {
       timer.pause();
       fill(230);
       textSize(50);
-      textAlign(CENTER, CENTER);
-      text("Hooray!");
+      textAlign(CENTER);
+      text("Hooray!", 300, 300);
     },
 
 
