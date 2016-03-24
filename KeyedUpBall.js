@@ -43,7 +43,7 @@ KeyedUpBall.prototype = {
   // display() draws the InteractiveBall
   display: function() {
     noStroke();
-    fill(52, 43, 231, 181);
+    fill(255, 0, 222, 181);
     ellipse(this.position.x, this.position.y, this.radius * 2, this.radius * 2);
   },
 

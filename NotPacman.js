@@ -17,7 +17,7 @@ var score = {
 
   display: function () {
     textSize(40);
-    fill(255);
+    fill(230);
     text(this.number, 560, 40);
   },
 
