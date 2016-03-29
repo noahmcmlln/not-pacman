@@ -99,7 +99,6 @@ var NotPacmanGame = function () {
       timer.pause();
       fill(230);
       textSize(50);
-      textAlign(CENTER);
       text("Hooray!", 300, 300);
     },
 
